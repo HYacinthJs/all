@@ -13,19 +13,19 @@
                     </div>
 
                     <div class="title" v-show="!item.playBol">
-                        <h4>{{ item.mimeType }}</h4>
-                        <small>{{ item.playCount }}次播放</small>
+                        <h4>{{  item.mimeType  }}</h4>
+                        <small>{{  item.playCount  }}次播放</small>
                     </div>
                     <div class="play" @click="play(index, item)" v-show="!item.playBol">
                         <Icon name="play"></Icon>
                     </div>
-                    <time v-show="item.uploadTime">{{ item.uploadTime }}</time>
+                    <time v-show="item.uploadTime">{{  item.uploadTime  }}</time>
                     <div class="avatar bg-cover-all" v-show="!item.playBol"
                         :style="{ backgroundImage: `url(${item.image})` }"></div>
                 </div>
                 <div class="intro df-sb">
 
-                    作者:<div class="source">{{ item.userName }}</div>
+                    作者:<div class="source">{{  item.userName  }}</div>
                     <div class="box df-c">
                         <div>
                             <van-icon name="chat-o" dot color="gray" size="18" @click="intocommon(item.fileId)" />

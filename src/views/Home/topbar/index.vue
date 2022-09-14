@@ -3,7 +3,7 @@
         <div class="top-menu-bar">
             <swiper :options="swiperOption" ref="swiper-box">
                 <swiper-slide v-for="(news, index) in newsList" :class="{ 'active': homeNewsIndex === index }"
-                    @click.native="active(index)" :key="index">{{ news.title }}</swiper-slide>
+                    @click.native="active(index)" :key="index">{{  news.title  }}</swiper-slide>
             </swiper>
         </div>
         <a class="top-menu-more-btn df-c" href="javascript:void(0)" @click="isTopBarBox = true"><i

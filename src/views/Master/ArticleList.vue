@@ -7,8 +7,8 @@
       </div>
 
       <span>
-         <span style="color:white; font-size: 20px">欢迎,{{username}}！</span>
-         <el-button type="danger" @click="logout">注销</el-button>
+        <span style="color:white; font-size: 20px">欢迎,{{  username  }}！</span>
+        <el-button type="danger" @click="logout">注销</el-button>
       </span>
     </el-header>
     <br>
@@ -21,17 +21,18 @@
     <!-- 右侧卡片区域 -->
     <!-- 用户列表卡片区 -->
     <el-card class="box-card">
-      <el-form :inline="true"  class="demo-form-inline">
+      <el-form :inline="true" class="demo-form-inline">
         <el-form-item>
-          <el-button  class="el-icon-delete"  @click="deleteAll(selectValue)" :disabled="this.selectValue.length === 0"> 批量删除</el-button>
+          <el-button class="el-icon-delete" @click="deleteAll(selectValue)" :disabled="this.selectValue.length === 0">
+            批量删除</el-button>
 
         </el-form-item>
       </el-form>
 
       <!-- 表格区域 -->
       <template>
-        <el-table :data="artData" border stripe  @selection-change="selsChange">
-           <el-table-column  type="selection" width="55" ></el-table-column>
+        <el-table :data="artData" border stripe @selection-change="selsChange">
+           <el-table-column type="selection" width="55"></el-table-column>
           <el-table-column label="序号" type="index" width="60"></el-table-column>
 
           <el-table-column label="文章内容" prop="content" width="1000">
@@ -41,7 +42,7 @@
             </template>
           </el-table-column>
 
-          <el-table-column label="文章评论数" prop="replynum" ></el-table-column>
+          <el-table-column label="文章评论数" prop="replynum"></el-table-column>
           <el-table-column label="文章作者" prop="userName"></el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
@@ -54,17 +55,10 @@
         </el-table>
       </template>
       <!-- 分页 -->
-      <el-pagination
-        style="margin-top:10px;"
-        background
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="this.articlePage.pageNo"
-        :page-sizes="[3, 5, 8, 10]"
-        :page-size="this.articlePage.pageSize"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="total"
-      ></el-pagination>
+      <el-pagination style="margin-top:10px;" background @size-change="handleSizeChange"
+        @current-change="handleCurrentChange" :current-page="this.articlePage.pageNo" :page-sizes="[3, 5, 8, 10]"
+        :page-size="this.articlePage.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
+      </el-pagination>
     </el-card>
   </div>
 </template>
@@ -74,13 +68,13 @@ export default {
   name: "Video",
   data() {
     return {
-      selectValue:[],
+      selectValue: [],
       srcUrl: '../../src/assets/images/1.png',
-      username:"",
-      artData:[],
-      total:0,
-      time:"",
-      articlePage:{
+      username: "",
+      artData: [],
+      total: 0,
+      time: "",
+      articlePage: {
         pageNo: 1, //当前页码
         pageSize: 3
       }
@@ -88,7 +82,6 @@ export default {
   },
   mounted() {
     this.username = window.sessionStorage.getItem("user");
-
     this.getArtList();
   },
   methods: {
@@ -101,7 +94,7 @@ export default {
       // console.log(this.selectValue)
     },
     async getArtList() {
-      const {data: res} = await this.$http.get("/home/getArticleByPage/" + this.articlePage.pageNo + "/" + this.articlePage.pageSize);
+      const { data: res } = await this.$http.get("/home/getArticleByPage/" + this.articlePage.pageNo + "/" + this.articlePage.pageSize);
       if (res.flag === "error") return this.$message.error("获取文章失败")
       this.artData = res.articleList;
       this.total = res.totalArticle;
@@ -127,13 +120,13 @@ export default {
         return this.$message.info("已取消删除")
 
       }
-      const {data: res} = await this.$http.get("/home/deleteArticleById/" + id);
+      const { data: res } = await this.$http.get("/home/deleteArticleById/" + id);
       if (res != 'success') {
         return this.$message.error("删除失败")
       }
       this.$message.success("删除成功");
-      this.$http.delete("/relComment/deleteAll/"+id).then((res) =>{
-          console.log(res)
+      this.$http.delete("/relComment/deleteAll/" + id).then((res) => {
+        console.log(res)
       })
       await this.getArtList();//刷新列表
     },
@@ -142,24 +135,23 @@ export default {
       console.log(ids)
       var id = ids.split(",")
       console.log(id)
-      const confirmResult =  await  this.$confirm('此操作将永久删除' + id.length + '篇文章, 是否继续?', '提示', {
+      const confirmResult = await this.$confirm('此操作将永久删除' + id.length + '篇文章, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).catch(err => err);
 
-      if (confirmResult != 'confirm'){
+      if (confirmResult != 'confirm') {
         return this.$message.info("已取消删除")
       } else {
-
-          this.$http.delete("/home/deleteArticleByIds/"+id).then(resp => {
-            if (resp.status == 200){
-              this.getArtList();//刷新列表
-              this.$message.success("删除成功！！！")
-            }else {
-              this.$message.fail("删除失败！！！")
-            }
-          })
+        this.$http.delete("/home/deleteArticleByIds/" + id).then(resp => {
+          if (resp.status == 200) {
+            this.getArtList();//刷新列表
+            this.$message.success("删除成功！！！")
+          } else {
+            this.$message.fail("删除失败！！！")
+          }
+        })
       }
     }
   }
@@ -167,20 +159,23 @@ export default {
 </script>
 
 <style   lang="less" scoped>
-  .el-header {
-    background-color: #2b8eff;
+.el-header {
+  background-color: #2b8eff;
+  display: flex;
+  justify-content: space-between; // 左右贴边
+  padding-left: 0%; // 左边界
+  align-items: center; // 水平
+  color: #ffffff;
+  font-size: 20px;
+
+  >div {
+    //左侧div加布局
     display: flex;
-    justify-content: space-between;// 左右贴边
-    padding-left: 0%;// 左边界
-    align-items: center;// 水平
-    color: #ffffff;
-    font-size: 20px;
-    > div { //左侧div加布局
-      display: flex;
-      align-items: center;
-      span {
-        margin-left: 15px;
-      }
+    align-items: center;
+
+    span {
+      margin-left: 15px;
     }
   }
+}
 </style>

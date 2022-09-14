@@ -4,11 +4,11 @@
         <h2>登陆你的头条，精彩永不消失</h2>
         <div class="input username">
             <input type="text" placeholder="请输入用户名" v-model="username">
-            <span :class="{ 'animate': username_msg }">{{ username_msg }}</span>
+            <span :class="{ 'animate': username_msg }">{{  username_msg  }}</span>
         </div>
         <div class="input password">
             <input type="password" placeholder="请输入密码" v-model="password">
-            <span :class="{ 'animate': password_msg }">{{ password_msg }}</span>
+            <span :class="{ 'animate': password_msg }">{{  password_msg  }}</span>
         </div>
         <button class="login" @click="login">登录</button>
         <button class="register" @click="registerPage">注册</button>
@@ -86,7 +86,10 @@ export default {
                     } catch (e) {
                     }
                     this.$hideLoading();
-
+                    // this.$set( target, key, value ) 赋值响应式对象，并触发刷新
+                    // target 数据源
+                    // key 为数组时为索引
+                    // value 重新赋的值
                     this.$set(this.$store.state.user.footerBarList, 3, {
                         title: '我的',
                         icon: 'account1',

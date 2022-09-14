@@ -18,6 +18,7 @@ export default {
     },
     computed: {
         iconName() {
+            // es6模板字符串拼接
             return `#icon-${this.name}`;
         }
     }

@@ -1,19 +1,14 @@
 <template>
-  <van-button
-    :class="{
-      collected: value
-    }"
-    :icon="value ? 'star' : 'star-o'"
-    @click="onCollect"
-    :loading="false"
-  />
+  <van-button :class="{
+    collected: value
+  }" :icon="value ? 'star' : 'star-o'" @click="onCollect" :loading="false" />
 </template>
 
 <script>
 
 export default {
   name: 'CollectionVideo',
-  data () {
+  data() {
     return {
       loading: false
     }
@@ -26,27 +21,27 @@ export default {
     videoId: {
       type: [Number, String, Object]
     },
-    userId:{
+    userId: {
       type: [Number, String, Object]
     }
   },
-  created () {},
-  mounted () {},
+  created() { },
+  mounted() { },
   methods: {
-    async onCollect () {
+    async onCollect() {
       this.loading = true
       try {
         if (this.value) {
           // 已收藏，取消收藏
           console.log(this.videoId)
-          const {data} = await this.$http.get("/video/deleteCollect/"+this.videoId)
-          const {res} = await this.$http.get("/userOpera/deleteCollectionVideo/"+this.userId + "/"+this.videoId)
+          const { data } = await this.$http.get("/video/deleteCollect/" + this.videoId)
+          const { res } = await this.$http.get("/userOpera/deleteCollectionVideo/" + this.userId + "/" + this.videoId)
           console.log(data)
         } else {
           // 没有收藏，添加收藏
           console.log(this.value)
-          const {data} = await this.$http.get("/video/addCollect/"+this.videoId)
-          const {res} = await this.$http.get("/userOpera/addCollectionVideo/"+this.userId + "/"+this.videoId)
+          const { data } = await this.$http.get("/video/addCollect/" + this.videoId)
+          const { res } = await this.$http.get("/userOpera/addCollectionVideo/" + this.userId + "/" + this.videoId)
           console.log(data)
         }
 

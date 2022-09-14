@@ -78,6 +78,11 @@ Vue.use(Lazyload, {
     lazyComponent: true,
 });
 
+// 编辑器
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+Vue.use(mavonEditor)
+
 // 用于跨域访问
 import { VueJsonp } from 'vue-jsonp'
 Vue.use(VueJsonp)
@@ -86,11 +91,6 @@ Vue.use(VueJsonp)
  * const vm = new Vue()
  * vm.$jsonp('/some-jsonp-url', {  someParam: 'veryNice'})
  */
-
-// 编辑器
-import mavonEditor from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
-Vue.use(mavonEditor)
 
 // swiper轮播
 import VueAwesomeSwiper from 'vue-awesome-swiper'

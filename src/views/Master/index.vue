@@ -2,7 +2,6 @@
     <div class="record-wrapper">
         <van-nav-bar title="后台管理" left-text="返回" left-arrow @click-left="onClickLeft" />
 
-
         <div class="login_container">
             <div class="login_box">
                 <div class="avatar_box">
@@ -12,9 +11,9 @@
 
                 <!--添加表单 loginRules 校验规则  :model="loginForm"双向绑定-->
                 <el-form ref="loginFormRef" :model="loginForm" :rules="loginRules" class="login_form" label-width="0px">
-                    <!--       prop="username" 校验属性 -->
+                    <!-- prop="username" 校验属性 -->
                     <el-form-item prop="userName">
-                        <!--          iconfont icondenglu 样式 图标-->
+                        <!-- iconfont icondenglu 样式 图标-->
                         <el-input v-model="loginForm.userName" prefix-icon="iconfont icondenglu"></el-input>
                     </el-form-item>
                     <el-form-item prop="userPassword">
@@ -22,16 +21,13 @@
                         </el-input>
                     </el-form-item>
                     <el-form-item class="btns">
-
                         <el-button type="primary" @click="login">登录</el-button>
                         <el-button type="info" @click="resetLoginForm">重置</el-button>
                     </el-form-item>
                 </el-form>
             </div>
 
-
             <div class="el-login-footer">
-
                 <span>Copyright © 2018-2021 tt.vip All Rights Reserved.</span>
             </div>
         </div>

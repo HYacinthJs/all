@@ -1,11 +1,7 @@
 <template>
   <!-- loading 默认停止加载 -->
-  <van-icon
-    :name="value === 1 ? 'good-job' : 'good-job-o'"
-    :color="value === 1 ? '#e5645f' : ''"
-    @click="onCollect"
-    :loading="loading"
-  />
+  <van-icon :name="value === 1 ? 'good-job' : 'good-job-o'" :color="value === 1 ? '#e5645f' : ''" @click="onCollect"
+    :loading="loading" />
 </template>
 
 <script>
@@ -27,17 +23,17 @@ export default {
       required: true
     },
   },
-  data () {
+  data() {
     return {
       loading: false
     }
   },
-  created () {
+  created() {
 
   },
-  mounted () {},
+  mounted() { },
   methods: {
-    async onCollect () {
+    async onCollect() {
       this.$toast.loading({
         duration: 0, // 持续展示 toast
         message: '操作中...',
@@ -49,14 +45,14 @@ export default {
         let status = 0
         if (this.value === 1) {
           // 已点赞，取消点
-          const {data} = await this.$http.get("/home/deleteLike/"+this.articleId)
-          const {res} = await this.$http.get("/userOpera/deleteLikeArticle/"+this.userId + "/"+this.articleId)
+          const { data } = await this.$http.get("/home/deleteLike/" + this.articleId)
+          const { res } = await this.$http.get("/userOpera/deleteLikeArticle/" + this.userId + "/" + this.articleId)
 
         } else {
           // 没有点赞，添加点赞
           //console.log("点赞成功")
-          const {data} = await this.$http.get("/home/addLike/"+this.articleId)
-          const {res} = await this.$http.get("/userOpera/addLikeArticle/"+this.userId + "/"+this.articleId)
+          const { data } = await this.$http.get("/home/addLike/" + this.articleId)
+          const { res } = await this.$http.get("/userOpera/addLikeArticle/" + this.userId + "/" + this.articleId)
 
           status = 1
         }

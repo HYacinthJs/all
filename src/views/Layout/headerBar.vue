@@ -33,7 +33,7 @@ export default {
     }
 
     .search {
-        width: e("calc(100% - 1.3rem)");
+        width: e("calc(100% - 1.3rem)"); // e声明不进行运算（运算则98.7%）
         position: relative;
         color: @font-gray;
 

@@ -7,7 +7,7 @@
       </div>
 
       <span>
-        <span style="color:white; font-size: 20px">欢迎,{{ username }}！</span>
+        <span style="color:white; font-size: 20px">欢迎,{{  username  }}！</span>
         <el-button type="danger" @click="logout">注销</el-button>
       </span>
     </el-header>
@@ -24,12 +24,12 @@
           <div class="user">
             <img src="~@/assets/images/chahao.jpg" alt="" class="img">
             <div class="userInfo">
-              <p class="name">{{ username }}</p>
+              <p class="name">{{  username  }}</p>
               <p class="role">管理员</p>
             </div>
           </div>
           <div class="loginInfo">
-            <p>登录时间：<span>{{ time }}</span></p>
+            <p>登录时间：<span>{{  time  }}</span></p>
             <p>登录地点：<span>四川省成都市双流区</span></p>
           </div>
         </el-card>
@@ -52,8 +52,8 @@
             :body-style="{ display: 'flex', padding: 0 }">
             <i class="icon" :class="`el-icon-${item.icon}`" :style="{ background: item.color }"> </i>
             <div class="detail">
-              <p class="num">{{ item.value }}</p>
-              <p class="txt">{{ item.name }}</p>
+              <p class="num">{{  item.value  }}</p>
+              <p class="txt">{{  item.name  }}</p>
             </div>
 
           </el-card>

@@ -2,7 +2,7 @@
     <div id="app">
         <van-popup v-model="show" position="top" :overlay="false" :duration="0.4" :lock-scroll="false"
             :close-on-click-overlay="false" :close-on-popstate="true" :style="{ height: '8%' }" round closeable>
-            <div class="msgs_cls" @click="fn()">{{ msgs }}</div>
+            <div class="msgs_cls" @click="fn()">{{  msgs  }}</div>
         </van-popup>
         <transition :name="animate">
             <router-view id="view" v-if="isRouterAlive"></router-view>
